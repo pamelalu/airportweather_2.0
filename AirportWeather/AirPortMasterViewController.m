@@ -15,6 +15,7 @@
 @end
 
 @implementation AirPortMasterViewController
+@synthesize detailViewController;
 
 - (void)awakeFromNib
 {
@@ -31,9 +32,32 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    
+    /*UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+     
+    self.navigationItem.rightBarButtonItem = addButton;*/
+
+    
+    if([self.fetchedResultsController fetchedObjects].count>0){
+        
+        
+        NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+        //NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+        NSLog(@"%@", [[managedObject valueForKey:@"code"] description]);
+        
+        self.detailViewController = [[AirPortDetailViewController alloc] init];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        
+        self.detailViewController = [storyboard instantiateViewControllerWithIdentifier:@"AirPortDetailView"];
+        self.detailViewController.detailItem = managedObject;
+        [self.navigationController pushViewController:self.detailViewController animated:YES];
+    }
+    
     self.detailViewController = (AirPortDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,7 +66,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+- (void)insertNewObject:(NSString*)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -51,6 +75,7 @@
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
     [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:sender forKey:@"code"];
     
     // Save the context.
     NSError *error = nil;
@@ -60,6 +85,20 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+}
+#pragma mark - SearchBar View
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self insertNewObject:(NSString*)searchBar.text];
+    [self.searchDisplayController setActive:NO];
+    [self.tableView reloadData];
+    
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString
+{
+    return YES;
 }
 
 #pragma mark - Table View
@@ -75,9 +114,17 @@
     return [sectionInfo numberOfObjects];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -137,11 +184,14 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AirportCodes" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
+    
+    //[fetchRequest setReturnsDistinctResults:YES];
+    //[fetchRequest setResultType: NSDictionaryResultType];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
@@ -229,7 +279,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [[object valueForKey:@"code"] description];
 }
 
 @end

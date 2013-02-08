@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2524" systemVersion="12A217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1863"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,28 +19,36 @@
             </objects>
             <point key="canvasLocation" x="-1" y="64"/>
         </scene>
-        <!--class Prefix:identifier Master View Controller - Master-->
+        <!--Air Port Master View Controller - Master-->
         <scene sceneID="18">
             <objects>
                 <tableViewController storyboardIdentifier="" title="Master" id="12" customClass="AirPortMasterViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ncP-Ew-GmA">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="12" id="0He-vg-iSe"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="phq-AM-6qj" style="IBUITableViewCellStyleDefault" id="lJ0-d7-vTF">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" lineBreakMode="tailTruncation" autoshrinkMode="none" baselineAdjustment="alignBaselines" text="Title" adjustsFontSizeToFit="NO" id="phq-AM-6qj">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="phq-AM-6qj">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -57,37 +65,172 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="36"/>
+                    <navigationItem key="navigationItem" title="Airport List" id="36"/>
+                    <connections>
+                        <outlet property="searchBar" destination="ncP-Ew-GmA" id="mXo-d8-6Ym"/>
+                        <outlet property="searchDisplayController" destination="LuX-IQ-j1I" id="OQO-gw-Z56"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="LuX-IQ-j1I">
+                    <connections>
+                        <outlet property="delegate" destination="12" id="aDq-o9-b9d"/>
+                        <outlet property="searchBar" destination="ncP-Ew-GmA" id="ElJ-40-IO7"/>
+                        <outlet property="searchContentsController" destination="12" id="SYi-zx-KFv"/>
+                        <outlet property="searchResultsDataSource" destination="12" id="hgg-Zh-JkH"/>
+                        <outlet property="searchResultsDelegate" destination="12" id="KHV-X2-aBu"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
-        <!--class Prefix:identifier Detail View Controller - Detail-->
+        <!--Air Port Detail View Controller - Detail-->
         <scene sceneID="24">
             <objects>
-                <viewController storyboardIdentifier="" title="Detail" id="21" customClass="AirPortDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AirPortDetailView" title="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="21" customClass="AirPortDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" lineBreakMode="tailTruncation" autoshrinkMode="none" minimumFontSize="10" text="Detail view content goes here" textAlignment="center" id="27">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Wind Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhT-KN-FJQ">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Elevation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jp-ic-a7K">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Clouds Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7y-0q-DrC">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Airport Code Not Found" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="ujj-tx-J9i">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="LXd-aR-3xz"/>
+                                    <constraint firstAttribute="width" constant="267" id="an5-kd-wia"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-5Z-ex0">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acC-dB-mRq">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf3-2N-vcG">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dew Point" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQs-gE-8Dl">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oV-uz-aAr">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Humidity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zT4-ZD-eYV">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sea Level Pressure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUU-nX-7mS">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5E-Z2-jlu">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIz-fj-gHq">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Clouds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfq-us-BlH">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujF-28-YP6">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tempreature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzH-5O-0gB">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtD-xc-Qfa">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="27" firstAttribute="centerY" secondItem="22" secondAttribute="centerY" type="default" id="7cE-gL-0wv"/>
-                            <constraint firstItem="27" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="R0m-z7-TWk"/>
-                            <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pRe-qY-58T"/>
+                            <constraint firstItem="CIz-fj-gHq" firstAttribute="leading" secondItem="l5E-Z2-jlu" secondAttribute="leading" type="default" id="0f2-ta-Dee"/>
+                            <constraint firstItem="acC-dB-mRq" firstAttribute="leading" secondItem="xfJ-5Z-ex0" secondAttribute="leading" type="default" id="5Tt-qo-UeT"/>
+                            <constraint firstItem="Vf3-2N-vcG" firstAttribute="leading" secondItem="acC-dB-mRq" secondAttribute="leading" type="default" id="5ZQ-3I-DpL"/>
+                            <constraint firstItem="gQs-gE-8Dl" firstAttribute="top" secondItem="V7y-0q-DrC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="87B-GX-WIB"/>
+                            <constraint firstItem="V7y-0q-DrC" firstAttribute="top" secondItem="0jp-ic-a7K" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8Gq-eh-GNy"/>
+                            <constraint firstItem="nfq-us-BlH" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ARa-9Q-9af"/>
+                            <constraint firstItem="zT4-ZD-eYV" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="DPj-Rs-V94"/>
+                            <constraint firstItem="nfq-us-BlH" firstAttribute="top" secondItem="uUU-nX-7mS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="GCX-FX-FLZ"/>
+                            <constraint firstItem="uUU-nX-7mS" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="LeF-5Z-cRT"/>
+                            <constraint firstItem="xfJ-5Z-ex0" firstAttribute="bottom" secondItem="uhT-KN-FJQ" secondAttribute="bottom" type="default" id="N3Q-3z-wfX"/>
+                            <constraint firstItem="uUU-nX-7mS" firstAttribute="bottom" secondItem="CIz-fj-gHq" secondAttribute="bottom" type="default" id="OCQ-ch-9jE"/>
+                            <constraint firstItem="0jp-ic-a7K" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="QTb-PL-GDf"/>
+                            <constraint firstItem="nfq-us-BlH" firstAttribute="bottom" secondItem="ujF-28-YP6" secondAttribute="bottom" type="default" id="Qfn-ji-Ook"/>
+                            <constraint firstItem="ujj-tx-J9i" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="RGu-i0-lfE"/>
+                            <constraint firstItem="ZzH-5O-0gB" firstAttribute="bottom" secondItem="gtD-xc-Qfa" secondAttribute="bottom" type="default" id="SBe-OD-jkH"/>
+                            <constraint firstItem="gQs-gE-8Dl" firstAttribute="bottom" secondItem="6oV-uz-aAr" secondAttribute="bottom" type="default" id="VNA-5r-fG1"/>
+                            <constraint firstItem="V7y-0q-DrC" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="WQ5-ZQ-8hi"/>
+                            <constraint firstItem="0jp-ic-a7K" firstAttribute="top" secondItem="uhT-KN-FJQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="aog-px-Wkn"/>
+                            <constraint firstItem="ujF-28-YP6" firstAttribute="leading" secondItem="CIz-fj-gHq" secondAttribute="leading" type="default" id="bzQ-4G-k6I"/>
+                            <constraint firstItem="zT4-ZD-eYV" firstAttribute="bottom" secondItem="l5E-Z2-jlu" secondAttribute="bottom" type="default" id="cdf-Yr-gZ6"/>
+                            <constraint firstItem="ujj-tx-J9i" firstAttribute="top" secondItem="22" secondAttribute="top" constant="30" id="d5w-WK-iVQ"/>
+                            <constraint firstItem="ujF-28-YP6" firstAttribute="leading" secondItem="gtD-xc-Qfa" secondAttribute="leading" type="default" id="dsk-BS-Ta5"/>
+                            <constraint firstAttribute="trailing" secondItem="xfJ-5Z-ex0" secondAttribute="trailing" constant="88" id="eAu-UO-b4T"/>
+                            <constraint firstItem="zT4-ZD-eYV" firstAttribute="top" secondItem="gQs-gE-8Dl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eMu-KB-C4j"/>
+                            <constraint firstItem="6oV-uz-aAr" firstAttribute="leading" secondItem="l5E-Z2-jlu" secondAttribute="leading" type="default" id="fCZ-am-Pc3"/>
+                            <constraint firstItem="ZzH-5O-0gB" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="h2j-XL-6tk"/>
+                            <constraint firstItem="ZzH-5O-0gB" firstAttribute="top" secondItem="nfq-us-BlH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lnx-7x-1OE"/>
+                            <constraint firstItem="uhT-KN-FJQ" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mY5-fb-Vko"/>
+                            <constraint firstItem="acC-dB-mRq" firstAttribute="bottom" secondItem="0jp-ic-a7K" secondAttribute="bottom" type="default" id="miG-vz-Nvx"/>
+                            <constraint firstItem="Vf3-2N-vcG" firstAttribute="bottom" secondItem="V7y-0q-DrC" secondAttribute="bottom" type="default" id="rYx-yr-DSN"/>
+                            <constraint firstItem="6oV-uz-aAr" firstAttribute="leading" secondItem="Vf3-2N-vcG" secondAttribute="leading" type="default" id="we0-mO-woC"/>
+                            <constraint firstItem="uUU-nX-7mS" firstAttribute="top" secondItem="zT4-ZD-eYV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="yD6-Hq-fQb"/>
+                            <constraint firstItem="gQs-gE-8Dl" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zEa-hg-qWI"/>
+                            <constraint firstItem="uhT-KN-FJQ" firstAttribute="top" secondItem="22" secondAttribute="top" constant="104" id="zSq-io-w5g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="26"/>
                     <connections>
-                        <outlet property="detailDescriptionLabel" destination="27" id="28"/>
+                        <outlet property="airportDescription" destination="ujj-tx-J9i" id="cRl-KU-yyU"/>
+                        <outlet property="clouds" destination="ujF-28-YP6" id="v1H-Zr-9Eb"/>
+                        <outlet property="cloudsCode" destination="Vf3-2N-vcG" id="A40-c5-2yw"/>
+                        <outlet property="dewPoint" destination="6oV-uz-aAr" id="XdM-ti-1Xj"/>
+                        <outlet property="elevation" destination="acC-dB-mRq" id="Ern-1y-eZl"/>
+                        <outlet property="humidity" destination="l5E-Z2-jlu" id="qhm-qT-1mW"/>
+                        <outlet property="seaLevelPressure" destination="CIz-fj-gHq" id="hBk-m0-8v4"/>
+                        <outlet property="temperature" destination="gtD-xc-Qfa" id="ofM-pN-60t"/>
+                        <outlet property="windSpeed" destination="xfJ-5Z-ex0" id="qZJ-Rh-gPY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
@@ -95,6 +238,32 @@
             <point key="canvasLocation" x="902" y="64"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AirPortDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AirPortDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="airportDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="clouds" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cloudsCode" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dewPoint" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="elevation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="humidity" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="seaLevelPressure" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="temperature" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="windSpeed" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AirPortMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AirPortMasterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

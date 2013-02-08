@@ -22,6 +22,8 @@
 		DE8F66FF16C49F5A00B6C6CA /* AirportWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE8F66FD16C49F5A00B6C6CA /* AirportWeather.xcdatamodeld */; };
 		DE8F670216C49F5A00B6C6CA /* AirPortMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8F670116C49F5A00B6C6CA /* AirPortMasterViewController.m */; };
 		DE8F670516C49F5A00B6C6CA /* AirPortDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8F670416C49F5A00B6C6CA /* AirPortDetailViewController.m */; };
+		DE8F670C16C49F7100B6C6CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8F670B16C49F7100B6C6CA /* CoreLocation.framework */; };
+		DE8F670F16C49FB600B6C6CA /* AirPort.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8F670E16C49FB600B6C6CA /* AirPort.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,9 @@
 		DE8F670116C49F5A00B6C6CA /* AirPortMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirPortMasterViewController.m; sourceTree = "<group>"; };
 		DE8F670316C49F5A00B6C6CA /* AirPortDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirPortDetailViewController.h; sourceTree = "<group>"; };
 		DE8F670416C49F5A00B6C6CA /* AirPortDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirPortDetailViewController.m; sourceTree = "<group>"; };
+		DE8F670B16C49F7100B6C6CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		DE8F670D16C49FB600B6C6CA /* AirPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirPort.h; sourceTree = "<group>"; };
+		DE8F670E16C49FB600B6C6CA /* AirPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirPort.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8F670C16C49F7100B6C6CA /* CoreLocation.framework in Frameworks */,
 				DE8F66DE16C49F5A00B6C6CA /* UIKit.framework in Frameworks */,
 				DE8F66E016C49F5A00B6C6CA /* Foundation.framework in Frameworks */,
 				DE8F66E216C49F5A00B6C6CA /* CoreGraphics.framework in Frameworks */,
@@ -83,6 +89,7 @@
 		DE8F66DC16C49F5A00B6C6CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE8F670B16C49F7100B6C6CA /* CoreLocation.framework */,
 				DE8F66DD16C49F5A00B6C6CA /* UIKit.framework */,
 				DE8F66DF16C49F5A00B6C6CA /* Foundation.framework */,
 				DE8F66E116C49F5A00B6C6CA /* CoreGraphics.framework */,
@@ -104,6 +111,8 @@
 				DE8F670416C49F5A00B6C6CA /* AirPortDetailViewController.m */,
 				DE8F66FD16C49F5A00B6C6CA /* AirportWeather.xcdatamodeld */,
 				DE8F66E616C49F5A00B6C6CA /* Supporting Files */,
+				DE8F670D16C49FB600B6C6CA /* AirPort.h */,
+				DE8F670E16C49FB600B6C6CA /* AirPort.m */,
 			);
 			path = AirportWeather;
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 				DE8F66FF16C49F5A00B6C6CA /* AirportWeather.xcdatamodeld in Sources */,
 				DE8F670216C49F5A00B6C6CA /* AirPortMasterViewController.m in Sources */,
 				DE8F670516C49F5A00B6C6CA /* AirPortDetailViewController.m in Sources */,
+				DE8F670F16C49FB600B6C6CA /* AirPort.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

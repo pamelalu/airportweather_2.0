@@ -36,7 +36,7 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"code"] description];
     }
 }
 
@@ -44,6 +44,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSString *airportCode = [[_detailItem valueForKey:@"code"] description];
+    self.title = airportCode;
+    
+    //NSLog(@"%@", airportCode);
+    AirPort *airport = [AirPort initByCodeWithContent:airportCode];
+    
+    _windSpeed.text = [NSString stringWithFormat:@"%@", airport.windSpeed];
+    _elevation.text = [NSString stringWithFormat:@"%@", airport.elevation];
+    _cloudsCode.text = [NSString stringWithFormat:@"%@", airport.cloudsCode];
+    _airportDescription.text = [NSString stringWithFormat:@"%@", airport.stationName];
+    _dewPoint.text = [NSString stringWithFormat:@"%@", airport.dewPoint];
+    _humidity.text = [NSString stringWithFormat:@"%@", airport.humidity];
+    _seaLevelPressure.text = [NSString stringWithFormat:@"%@", airport.seaLevelPressure];
+    _clouds.text = [NSString stringWithFormat:@"%@", airport.clouds];
+    _temperature.text = [NSString stringWithFormat:@"%@", airport.temperature];
+
     [self configureView];
 }
 
